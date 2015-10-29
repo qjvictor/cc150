@@ -17,20 +17,21 @@ public class SetMatrixZeroes {
 	public void setZeroes(int[][] matrix) {
 		if(matrix==null || matrix[0]==null || matrix.length==0 || matrix[0].length==0)
 			return;
-		boolean rowFlag = false;
-		boolean colFlag = false;
+		boolean rowIsZero = false;
+		boolean colIsZero = false;
 		for (int i = 0; i < matrix.length; i++) {
 			if (matrix[i][0] == 0) {
-				colFlag = true;
+				colIsZero = true;
 				break;
 			}
 		}
 		for (int i = 0; i < matrix[0].length; i++) {
 			if (matrix[0][i] == 0) {
-				rowFlag = true;
+				rowIsZero = true;
 				break;
 			}
 		}
+		//move the 0 to top and left.
 		for (int i = 1; i < matrix.length; i++) {
 			for (int j = 1; j < matrix[0].length; j++) {
 				if (matrix[i][j] == 0) {
@@ -39,18 +40,19 @@ public class SetMatrixZeroes {
 				}
 			}
 		}
+		//based on top and left, set zero.
 		for (int i = 1; i < matrix.length; i++) {
 			for (int j = 1; j < matrix[0].length; j++) {
 				if (matrix[i][0] == 0 || matrix[0][j] == 0)
 					matrix[i][j] = 0;
 			}
 		}
-		if (colFlag) {
+		if (colIsZero) {
 			for (int i = 0; i < matrix.length; i++) {
 				matrix[i][0] = 0;
 			}
 		}
-		if (rowFlag) {
+		if (rowIsZero) {
 			for (int i = 0; i < matrix[0].length; i++) {
 				matrix[0][i] = 0;
 			}
